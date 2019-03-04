@@ -119,6 +119,8 @@ function Animate(){
 	
 	Ball();
 	
+	isBallGone();
+	
 	Control();
 
 }
@@ -130,7 +132,7 @@ function padGenerate(){
 		landMark = canvas.width;
 		padAlt = ( padAlt ? 0 : 1 );
 		
-		isDown = true;
+		//isDown = true;
 		
 		for(let i = 0; i < 30; i++){
 		
@@ -157,6 +159,22 @@ function padStart(){
 	
 	}
 	return;
+}
+
+function isBallGone(){
+	
+	if(ballX + ballRad <= 0 || ballY - ballRad >= canvas.height){
+		ballX = canvas.width/2;
+		ballY = canvas.height/2;
+		padStart();
+		isStart = false;
+		isDown = true;
+		landMark = 2*canvas.width;
+		padAlt = 1;
+		score = 0;
+		document.getElementById('score').innerHTML = score;
+	}
+	
 }
 
 function padDraw(){
